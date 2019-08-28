@@ -71,10 +71,16 @@ class Emprestimo {
     private void setUsuario(Usuario usuario){
         this.usuario = usuario;
     }
-       public void adicionarItem(ItensEmprestimo item, Livro livro, short prazo){
-        item.setLivro(livro);//Atribui o livro ao atributo livro do objeto ItensImprestimo
-        item.setPrazo(prazo);//Ordena para o ItensEmprestimo atribuir o valor prazo ao seu atributo prazo
-        this.setItensEmprestimo(item);//Adiciona o Item emprestimo ao Array
+    public void adicionarItem(ItensEmprestimo item, Livro livro, short prazo){
+        boolean verefica = livro.getSituacao();
+        if(verefica == true){
+            System.out.println("Livro não disponivel");
+        }else{
+            item.setLivro(livro);//Atribui o livro ao atributo livro do objeto ItensImprestimo
+            item.setPrazo(prazo);//Ordena para o ItensEmprestimo atribuir o valor prazo ao seu atributo prazo
+            this.setItensEmprestimo(item);//Adiciona o Item emprestimo ao Array
+        }
+    }
     }
     //fazer retirado dos ItensEmprestimo
     public void retirar(Usuario usuario, short numero){
