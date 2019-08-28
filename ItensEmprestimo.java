@@ -13,17 +13,10 @@ import java.util.Date;
  * @author Aluno
  */
 class ItensEmprestimo {
-    private Emprestimo emprestimo;
     private Livro livro;
     private short prazo;
 
 
-    public Emprestimo getEmprestimo(){
-        return this.emprestimo;
-    }
-    public void setEmprestimo(Emprestimo emprestimo){
-        this.emprestimo = emprestimo;
-    }
     public Livro getLivro(){
         return this.livro;
     }
