@@ -66,17 +66,22 @@ public class Biblioteca {
         usuario1.setFone("(00) 98765-4321");                    //Atribuindo valor ao atributo fone do objeto de referencia usuario1 a classe Usuario
         usuario1.setEmail("joa12imalaia@emailcomercial.com");   //Atribuindo valor ao atributo email do objeto de referencia usuario1 a classe Usuario
         
+         //Criando objeto de referencia a classe ItensEmprestimo e especificando seus atributos
+        ItensEmprestimo item1 = new ItensEmprestimo();
+        ItensEmprestimo item2 = new ItensEmprestimo();
+        //criando prazos
+        
         //Criando objeto de referencia a classe Emprestimo e especificando seus atributos
         Emprestimo emprestimo1 = new Emprestimo();
-        //emprestimo1.setNumero(1);           //Atribuindo valor ao atributo numero do objeto de referencia emprestimo1 a classe Emprestimo
-        //emprestimo1.setUsuario(usuario1);   //Atribuido valor ao atributo usuario de referencia ao objeto Usuario do objeto de referencia emprestimo1 a classe Emprestimo
-        //Criando objeto de referencia a classe ItensEmprestimo e especificando seus atributos
-        ItensEmprestimo item1 = new ItensEmprestimo();
-        /**
-         *Para realizar a ação de retirada do livro 
-         * terminar essa parte
-         * 
-         */
+        //adicionado itens no emprestimo
+        emprestimo1.adicionarItem(item2, livro2, (short)10);
+        emprestimo1.adicionarItem(item1, livro1, (short)5);
+        //Realizar emprestimo de livros
+        emprestimo1.retirar(usuario1,(short)1);
+        
+        //devolvendo um dos itens
+        emprestimo1.devolver(1);
+    
         
         
         
