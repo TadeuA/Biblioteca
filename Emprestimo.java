@@ -25,7 +25,7 @@ class Emprestimo {
     */
     private Date data;//LocalDate.now()
     private Date hora;//LocalTime.now();
-    private int numero;
+    private short numero;
     private ArrayList<ItensEmprestimo> itensEmprestimo = new ArrayList<ItensEmprestimo>();
     private Usuario usuario;
 
@@ -45,13 +45,18 @@ class Emprestimo {
     public Date getHora(){
         return this.hora;
     }
+    public String getHoraFormatada(){
+        DateFormat formatoDeHora = new SimpleDateFormat("HH:mm");
+        String horaFormatada = formatoDeHora.format(this.getHora());
+        return horaFormatada;
+    }
     private void setHora(Date hora){
         this.hora = hora;
     }
-    public int getNumero(){
+    public short getNumero(){
         return this.numero;
     }
-    private void setNumero(int numero){
+    private void setNumero(short numero){
         this.numero = numero;
     }
     public ItensEmprestimo getItensEmprestimo(int posicao){
@@ -66,28 +71,28 @@ class Emprestimo {
     private void setUsuario(Usuario usuario){
         this.usuario = usuario;
     }
-    /**
-     * 
-     * @param numero faz referencia a operação
-     * @param item  faz referencia ao itenEmprestimo
-     * @param livro faz referencia ao livro a ser atribuido ao itensEmprestimi
-     * @param usuario faz referencia ao usuario que ira retirar
-     * @param prazo far referencia ao prazo de entrega
-     */
-    public void retirar(int numero, ItensEmprestimo item, Livro livro, Usuario usuario, short prazo){
+       public void adicionarItem(ItensEmprestimo item, Livro livro, short prazo){
+        item.setLivro(livro);//Atribui o livro ao atributo livro do objeto ItensImprestimo
+        item.setPrazo(prazo);//Ordena para o ItensEmprestimo atribuir o valor prazo ao seu atributo prazo
+        this.setItensEmprestimo(item);//Adiciona o Item emprestimo ao Array
+    }
+    //fazer retirado dos ItensEmprestimo
+    public void retirar(Usuario usuario, short numero){
         Date dataAtual = new Date(); //pegar data atual do sistema
         this.setData(dataAtual);//Atribui a data atual do sistema no atributo Data
         this.setHora(dataAtual);//Atribui a data atual do sistema no atributo Hora
-        item.setLivro(livro);//Atribui o livro ao atributo livro do objeto ItensImprestimo
-        item.situarLivro(true);//Ordena para o ItensEmprestimo atribuir o valor true ao atributo situacao ao objeto Livro
-        this.setUsuario(usuario);//Atribui o usuario ao atributo usuario de referencia ao objeto Usuario
         this.setNumero(numero);//Atribui o numero ao atributo numero
-        item.setPrazo(prazo);//Ordena para o ItensEmprestimo atribuir o valor prazo ao seu atributo prazo
-        this.setItensEmprestimo(item);//Adiciona o Intem emprestimo ao Array
+        this.setUsuario(usuario);//Atribui o usuario ao atributo usuario de referencia ao objeto Usuario
+        
+        //Ordena para o ItensEmprestimo atribuir o valor true ao atributo situacao ao objeto Livro
+        for(int i = 0; i < this.itensEmprestimo.size(); i++){
+            this.itensEmprestimo.get(i).situarLivro(true);
+        }
     }
+    //Devolver Item
     public void devolver(int posicao){
         ItensEmprestimo item = this.itensEmprestimo.get(posicao);//seleciona o Item a ser devolvido
         item.situarLivro(false);//Ordena para o ItensEmprestimo atribuir o valor false ao atributo situacao ao objeto Livro
         this.itensEmprestimo.remove(posicao);//remove o itnsEmrpestimo do array
-    }  
+    } 
 }
